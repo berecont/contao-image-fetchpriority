@@ -1,0 +1,16 @@
+{% extends '@Contao/content_element/image.html.twig' %}
+{% use '@Contao/component/_figure.html.twig' %}
+
+{% block content %}
+    {% if images %}
+        {% with {
+            figure: images|first,
+            img_attributes: (img_attributes|default(attrs()))
+                .set('fetchpriority', 'high')
+                .set('loading', 'eager')
+                .set('decoding', 'async')
+        } %}
+            {{ block('figure_component') }}
+        {% endwith %}
+    {% endif %}
+{% endblock %}
